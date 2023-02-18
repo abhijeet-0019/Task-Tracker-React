@@ -25,9 +25,9 @@ Header.propTypes = {
 
 
 //css in jsx
-const headingStyles = {
-  color: 'red',
-  backgroundColor: 'black'
-}
+// const headingStyles = {
+//   color: 'red',
+//   backgroundColor: 'black'
+// }
 
 export default Header
