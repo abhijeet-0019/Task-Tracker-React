@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import Header from './components/Header'
 import Tasks from './components/Tasks';
 import Addtask from './components/Addtask';
+import Footer from './components/Footer';
+import About from './components/About';
 
 function App() {
 
@@ -71,9 +75,9 @@ function App() {
       ...taskToSet,
       reminder: !taskToSet.reminder
     }
-    const res = await fetch(`http://localhost:5000/tasks/${id}`,{
+    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'PUT',
-      headers:{
+      headers: {
         'Content-type': 'application/json'
       },
       body: JSON.stringify(updTask)
@@ -93,11 +97,14 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Header title={"Task Tracker"} showForm={(e) => setShowAddTask(!showAddTask)} showAddTask={showAddTask} />
-      {showAddTask && <Addtask onAdd={addTask} />}
-      {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} setRem={setRem} />) : 'No tasks to show'}
-    </div>
+    <Router>
+      
+        <div className="container">
+          <Header title={"Task Tracker"} showForm={(e) => setShowAddTask(!showAddTask)} showAddTask={showAddTask} />
+          {showAddTask && <Addtask onAdd={addTask} />}
+          {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} setRem={setRem} />) : 'No tasks to show'}
+        </div>
+    </Router>
   );
 }
 export default App;
@@ -109,3 +116,8 @@ export default App;
 //   }
 // }
 // export default App
+
+// <Routes>
+//           <Route path='/about' element={<About />} />
+// </Routes>
+// <Footer />
